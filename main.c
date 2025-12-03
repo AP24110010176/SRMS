@@ -11,11 +11,11 @@ struct Student {
     float marks;
 };
 
-// GLOBAL variables
+
 char currentUser[20];
 char currentRole[10];
 
-// Function Declarations
+
 int loginSystem();
 void mainMenu();
 void adminMenu();
@@ -28,7 +28,7 @@ void updateStudent();
 void deleteStudent();
 
 
-// ========================= MAIN ============================
+
 int main() {
     if (loginSystem()) {
         mainMenu();
@@ -39,7 +39,7 @@ int main() {
 }
 
 
-// ========================= LOGIN SYSTEM =====================
+
 int loginSystem() {
     char username[20], password[20];
     char fileUser[20], filePass[20], fileRole[10];
@@ -49,7 +49,7 @@ int loginSystem() {
     scanf("%s", username);
 
     printf("Password: ");
-    scanf("%s", password);  // FIXED
+    scanf("%s", password);  
 
     FILE *fp = fopen(CREDENTIAL_FILE, "r");
     if (!fp) {
@@ -57,7 +57,7 @@ int loginSystem() {
         return 0;
     }
 
-    // Read credentials
+  
     while (fscanf(fp, "%s %s %s", fileUser, filePass, fileRole) == 3) {
         if (strcmp(username, fileUser) == 0 && strcmp(password, filePass) == 0) {
             strcpy(currentRole, fileRole);
@@ -72,7 +72,7 @@ int loginSystem() {
 }
 
 
-// ========================= MAIN MENU =====================
+
 void mainMenu() {
     if (strcmp(currentRole, "ADMIN") == 0)
         adminMenu();
@@ -83,7 +83,7 @@ void mainMenu() {
 }
 
 
-// ========================= ADMIN MENU =====================
+
 void adminMenu() {
     int choice;
 
@@ -111,7 +111,7 @@ void adminMenu() {
 }
 
 
-// ========================= STAFF MENU =====================
+
 void staffMenu() {
     int choice;
 
@@ -133,7 +133,7 @@ void staffMenu() {
 }
 
 
-// ========================= GUEST MENU =====================
+
 void guestMenu() {
     printf("\n========= GUEST MENU =========\n");
     printf("Only Display Allowed\n");
@@ -142,7 +142,7 @@ void guestMenu() {
 
 
 
-// ========================= ADD STUDENT =====================
+
 void addStudent() {
     FILE *fp = fopen(STUDENT_FILE, "a");
     struct Student st;
@@ -166,7 +166,7 @@ void addStudent() {
 }
 
 
-// ========================= DISPLAY STUDENTS =====================
+
 void displayStudents() {
     FILE *fp = fopen(STUDENT_FILE, "r");
     struct Student st;
@@ -186,7 +186,7 @@ void displayStudents() {
 }
 
 
-// ========================= SEARCH STUDENT =====================
+
 void searchStudent() {
     FILE *fp = fopen(STUDENT_FILE, "r");
     struct Student st;
@@ -216,7 +216,7 @@ void searchStudent() {
 }
 
 
-// ========================= UPDATE STUDENT =====================
+
 void updateStudent() {
     FILE *fp = fopen(STUDENT_FILE, "r");
     FILE *temp = fopen("temp.txt", "w");
@@ -253,7 +253,7 @@ void updateStudent() {
 }
 
 
-// ========================= DELETE STUDENT =====================
+
 void deleteStudent() {
     FILE *fp = fopen(STUDENT_FILE, "r");
     FILE *temp = fopen("temp.txt", "w");
